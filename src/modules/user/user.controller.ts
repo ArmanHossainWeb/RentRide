@@ -36,7 +36,8 @@ const getUser = async (req: Request, res: Response) => {
 
 const getSingle = async (req: Request, res: Response) => {
     try {
-        const result = await userService.getSingle(req.params.id as string);
+        const email = req.user!.email
+        const result = await userService.getSingle(email);
 
         if (result.rows.length === 0) {
             res.status(404).json({
